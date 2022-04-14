@@ -1,3 +1,9 @@
 git remote -v # check current remote origin
 git remote show origin # check current remote originY
+git add <filename> # adding file to staging area
+git commit -m "comment" # it saves your changes to local repository
+git push origin main # push changes to main branch remotely 
+git status # checking current status
+git branch # get current branch list
+git checkout -b <name> # create new branch and checkout to this branch
 
