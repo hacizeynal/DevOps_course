@@ -1,0 +1,3 @@
+git remote -v # check current remote origin
+git remote show origin # check current remote originY
+
