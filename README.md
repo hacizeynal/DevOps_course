@@ -1,2 +1,1 @@
-This repository will be used for DevOps Journey
-#
+#This repository will be used for DevOps Journey
