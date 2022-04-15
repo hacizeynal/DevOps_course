@@ -1,7 +1,7 @@
 """
 First version of this script will be used to collect all IP/MAC mappings from full ACI fabric
 """
-# new comment from GitHub
+# new comment from GitHub  conflict from CLI
 
 from login_request import get_token
 import requests
