@@ -4,8 +4,7 @@
 	<infraInfra>
 
 <Zeynal>   
-<Faraj Hajili>	
-<changed here>  
+<Faraj Hajili>
 
 		<cdpIfPol name="CDP-DISABLE" descr="" adminSt="disabled" status=""/>
 		<cdpIfPol name="CDP-ENABLE" descr="" adminSt="enabled" status=""/>
