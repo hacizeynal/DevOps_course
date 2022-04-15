@@ -3,15 +3,10 @@
 	
 	<infraInfra>
 		
-<<<<<<< HEAD
 <Zeynal>   
 <Faraj Hajili>	
-=======
-      <changed here>  
->>>>>>> dd94b784ae595535cdbf413f0d17b8005a2710eb
+<changed here>  
 		<cdpIfPol name="CDP-DISABLE" descr="" adminSt="disabled" status=""/>
-		
-    
 		<cdpIfPol name="CDP-ENABLE" descr="" adminSt="enabled" status=""/>
 		<fabricHIfPol name="10G" descr="" autoNeg="on" speed="10G" linkDebounce="100" fecMode="inherit" status=""/>
 		<fabricHIfPol name="1G-NON_NEG" descr="" autoNeg="off" speed="1G" linkDebounce="100" fecMode="inherit" status=""/>
