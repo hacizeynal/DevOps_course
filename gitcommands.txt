@@ -15,3 +15,5 @@ git reset --hard origin/wloska # force to pull from remote to local repo
 git pull -r # pull changes from repository and stack local changes on top of this commit
 git stash # save current uncommitte changes and save them for later use
 git stash pop # git changes back
+git reset --hard HEAD~1 # go back 1 commit and ignore change
+git reset --soft HEAD~1 # go back 1 commit and keep changes ,it means you will be in working directory
