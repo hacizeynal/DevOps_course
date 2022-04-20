@@ -17,3 +17,4 @@ git stash # save current uncommitte changes and save them for later use
 git stash pop # git changes back
 git reset --hard HEAD~1 # go back 1 commit and ignore change
 git reset --soft HEAD~1 # go back 1 commit and keep changes ,it means you will be in working directory
+git revert <commit hash> # creates a new commit to revert the old commit's changes
