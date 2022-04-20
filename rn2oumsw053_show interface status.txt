@@ -53,3 +53,4 @@ Gi1/2     rn2oumsw002 Gi7/40 connected    trunk      a-full a-1000 1000BaseSX SF
 Gi1/3     *** free uplink po disabled     1            auto   auto Not Present
 Gi1/4     *** free uplink po disabled     1            auto   auto Not Present
 Fa0                          disabled     routed       auto   auto 10/100BaseTX
+Fa1                          disabled     routed       auto   auto 10/100BaseTX
