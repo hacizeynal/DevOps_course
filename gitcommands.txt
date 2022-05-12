@@ -19,4 +19,4 @@ git reset --hard HEAD~1 # go back 1 commit and ignore change
 git reset --soft HEAD~1 # go back 1 commit and keep changes ,it means you will be in working directory
 git revert <commit hash> # creates a new commit to revert the old commit's changes
 git merge <source_branch> # merge from source to current branch
-
+git stash # is used to combine multiple commits for single one ,usually used when you fix bug 
