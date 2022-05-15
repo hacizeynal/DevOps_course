@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  flask_docker:
+    build:
+      context: ./
+    ports:
+      -  8900:8900
