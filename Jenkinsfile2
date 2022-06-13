@@ -3,24 +3,17 @@ pipeline {
     stages {
         stage('Welcome Step') {
             steps { 
-                echo 'Welcome to JenkinsTest'
-            }
-    stages {
-        stage('Building') {
-            steps { 
-                echo 'Building the soft'
-            }
-     stages {
-        stage('Testing') {
-            steps { 
-                echo 'Testing the soft'
-            }
-     stages {
-        stage('Deploy') {
-            steps { 
-                echo 'Deploying the soft'
+                echo 'Welcome to LambdaTest'
             }
         }
-        
+        stage('Welcome Step') {
+            steps { 
+                echo 'Welcome to LambdaTest'
+            }
+        }
+        stage('Welcome Step') {
+            steps { 
+                echo 'Welcome to LambdaTest'
+            }
     }
 }
