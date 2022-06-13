@@ -12,11 +12,6 @@ pipeline {
             }
         }
         stage('Testing Step') {
-            when {
-                expression {
-                    BRANCH_NAME == "jenkins-jobs" || BRANCH_NAME == "dev"
-                }
-            }
             steps { 
                 echo 'Testing App'
             }
