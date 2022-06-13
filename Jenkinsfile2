@@ -1,29 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage("init") {
+        stage('Initialization') {
             steps {
-              
-                }
             }
         }
-        stage("build jar") {
-            steps {
-              
-                }
-            }
-        }
-        stage("build image") {
-            steps {
-               
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-               
-                }
-            }
-        }
-    }   
+   }
 }
