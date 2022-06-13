@@ -21,6 +21,11 @@ pipeline {
             }
         }
         stage('Testing Step') {
+            when{
+                expression{
+                    params.executeTests == true
+            }
+            }
             steps { 
                 echo 'Testing App'
             }
@@ -28,8 +33,8 @@ pipeline {
         stage('Deploying Step') {
             steps { 
                 echo 'Deploy the App'
+                echo "Deploying version ${params.VERSION}"
             }
         }
     }
 }
-
