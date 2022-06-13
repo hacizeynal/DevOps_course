@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.6'
+    }
+
+    stages {
+        stage('Build Jar') {
+            steps {
+                script{
+                    echo 'Building Jar..'
+                    sh 'mvn package'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                script{
+                    echo 'Building Docker Image..'
+                    sh 'mvn package'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
