@@ -4,6 +4,10 @@ pipeline {
         NEW_VERSION = "1.3.0"
         //SERVER_CREDENTIALS =credentials('server-credentials')
     }
+    parameters {
+        chocice(name: 'VERSION',choices: ['1.1','1.2','1.3'],description: '')
+        booleanParam(name: 'executeTests',defaultValue: true,description: 'check true of false')
+    } 
     stages {
         stage('Welcome Step') {
             steps { 
@@ -28,4 +32,3 @@ pipeline {
         }
     }
 }
-
