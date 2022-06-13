@@ -12,6 +12,7 @@ pipeline {
         stage('Building Step') {
             steps { 
                 echo 'Building App'
+                echo "Building version ${NEW_VERSION}"
             }
         }
         stage('Testing Step') {
@@ -26,3 +27,4 @@ pipeline {
         }
     }
 }
+
