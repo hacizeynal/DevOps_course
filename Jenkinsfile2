@@ -1,19 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage('Welcome Step') {
-            steps { 
-                echo 'Welcome to LambdaTest'
+        stage("init") {
+            steps {
+              
+                }
             }
         }
-        stage('Welcome Step') {
-            steps { 
-                echo 'Welcome to LambdaTest'
+        stage("build jar") {
+            steps {
+              
+                }
             }
         }
-        stage('Welcome Step') {
-            steps { 
-                echo 'Welcome to LambdaTest'
+        stage("build image") {
+            steps {
+               
+                }
             }
-    }
+        }
+        stage("deploy") {
+            steps {
+               
+                }
+            }
+        }
+    }   
 }
