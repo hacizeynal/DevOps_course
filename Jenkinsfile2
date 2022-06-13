@@ -1,9 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Initialization') {
-            steps {
+        stage('Welcome Step') {
+            steps { 
+                echo 'Welcome to LambdaTest'
             }
         }
-   }
+    }
 }
