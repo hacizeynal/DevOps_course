@@ -2,26 +2,37 @@ pipeline {
     agent any
     stages {
 
-    
-        stage('Testing Step') {
-            steps { 
-                echo 'Testing App'
-            }
-        }
         stage('Welcome Step') {
             steps { 
                 echo 'Welcome to the JenkinsTest with Multiple Branches'
             }
         }
-        stage('Building Step') {
+        stage('Testing Step') {
+
             steps { 
-                echo 'Building App'
+                echo 'Testing App for branch ${BRANCH_NAME}'
+            }
+        }
+       
+        stage('Building Step') {
+            when {
+                expression {
+                    BRANCH_NAME =='main'
+                }
+            }
+            steps { 
+                echo 'Building App for branch ${BRANCH_NAME}'
             }
         }
         
         stage('Deploying Step') {
+            when {
+                expression {
+                    BRANCH_NAME =='main'
+                }
+            }
             steps { 
-                echo 'Deploy the App'
+                echo 'Deploy the App for branch ${BRANCH_NAME}'
             }
         }
     }
