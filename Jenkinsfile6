@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
+
+    
+        stage('Testing Step') {
+            steps { 
+                echo 'Testing App'
+            }
+        }
         stage('Welcome Step') {
             steps { 
-                echo 'Welcome to JenkinsTest'
+                echo 'Welcome to the JenkinsTest with Multiple Branches'
             }
         }
         stage('Building Step') {
@@ -11,11 +18,7 @@ pipeline {
                 echo 'Building App'
             }
         }
-        stage('Testing Step') {
-            steps { 
-                echo 'Testing App'
-            }
-        }
+        
         stage('Deploying Step') {
             steps { 
                 echo 'Deploy the App'
