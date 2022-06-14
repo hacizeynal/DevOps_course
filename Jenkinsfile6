@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 script{
-                    gv.buildImage()
+                    echo 'Building application !'
                 }
             }
         }
@@ -38,9 +38,10 @@ pipeline {
             }
             steps {
                 script{
-                    gv.deployApp()
+                    echo 'Deploying application !'
                 }
             }
         }
     }
 }
+ 
