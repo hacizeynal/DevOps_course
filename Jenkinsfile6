@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+                script{
+                    echo 'Testing application !'
+                    echo 'Executing test for branch ${BRANCH_NAME}'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            when{
+                expression {
+
+                    BRANCH_NAME == 'main'
+
+                }
+
+            }
+            steps {
+                script{
+                    gv.buildImage()
+                }
+            }
+        }
+        
+        stage('Deploy') {
+
+            when{
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+
+            }
+            steps {
+                script{
+                    gv.deployApp()
+                }
+            }
+        }
+    }
+}
+ 
