@@ -10,7 +10,7 @@ pipeline {
         stage('Testing Step') {
 
             steps { 
-                echo 'Testing App for branch ${BRANCH_NAME}'
+                echo "Testing App for branch ${BRANCH_NAME}"
             }
         }
        
@@ -21,7 +21,7 @@ pipeline {
                 }
             }
             steps { 
-                echo 'Building App for branch ${BRANCH_NAME}'
+                echo "Building App for branch ${BRANCH_NAME}"
             }
         }
         
@@ -32,7 +32,7 @@ pipeline {
                 }
             }
             steps { 
-                echo 'Deploy the App for branch ${BRANCH_NAME}'
+                echo "Deploy the App for branch ${BRANCH_NAME}"
             }
         }
     }
