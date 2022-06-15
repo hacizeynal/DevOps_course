@@ -28,7 +28,7 @@ pipeline {
                     buildJar()
                 }       
             }
-        
+        }
         
         stage('Build') {
 
