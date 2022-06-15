@@ -10,6 +10,10 @@ pipeline {
             steps {
 
                 helloWorld(name:"Zeynal",dayOfWeek:"Monday")
+                script {
+                    calculator.add(6,8)
+                    calculator.multiple(6,8)
+                }
 
             }
 
