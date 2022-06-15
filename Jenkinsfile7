@@ -1,0 +1,36 @@
+@Library("jenkins-shared-library") _
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Example') {
+
+            steps {
+
+                helloWorld(name:"Zeynal",dayOfWeek:"Monday")
+                script {
+                    calculator.add(6,8)
+                    calculator.multiple(6,8)
+                }
+
+            }
+
+        }
+        stage('Build') {
+
+            steps {
+
+                echo 'Building Docker image'
+                script {
+                    buildImage()
+                }
+
+            }
+
+        }
+
+    }
+
+}
