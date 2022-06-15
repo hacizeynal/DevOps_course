@@ -18,6 +18,18 @@ pipeline {
             }
 
         }
+        stage('Build Artifact') {
+
+            steps {
+
+                echo 'Building Artifact image'
+
+                script {
+                    buildJar()
+                }       
+            }
+        
+        
         stage('Build') {
 
             steps {
