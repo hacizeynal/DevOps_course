@@ -1,11 +1,13 @@
 @Library("jenkins-shared-library")
-tools {
-    maven "maven-3.6"   
-    }
+
 def gv
 pipeline {
 
     agent any
+    
+    tools {
+    maven "maven-3.6"   
+    }
 
     stages {
 
