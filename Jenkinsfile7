@@ -25,7 +25,7 @@ pipeline {
                 echo 'Building Docker image'
 
                 script {
-                    build2Image(zhajili/devops:jma-4.0)
+                    build2Image "zhajili/devops:jma-4.0"
                 }       
             }
         }
