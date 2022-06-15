@@ -9,7 +9,7 @@ pipeline {
 
             steps {
 
-                helloWorld("Zeynal","Thursday")
+                helloWorld(name:"Zeynal",dayOfWeek:"Monday")
 
             }
 
