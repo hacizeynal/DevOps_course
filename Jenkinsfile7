@@ -29,7 +29,7 @@ pipeline {
             steps {
 
                 echo 'Building Artifact image'
-                sh 'echo Branch Name: $BRANCH_NAME
+                echo "Branch Name: $BRANCH_NAME"
 
                 script {
                     buildJar()
