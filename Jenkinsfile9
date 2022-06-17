@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('GIT Checkout') {
+            steps {
+                echo 'Checking out git...'
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/main']], 
+                    extensions: [], 
+                    userRemoteConfigs: [[credentialsId: 'git-creds', url: 'https://github.com/zhajili91/DevOps_course.git']]
+                    
+                    ])
+                
+                script {
+                    echo "============================="
+                    echo "Listing all the available branches..."
+                    sh "git branch -a"
+                    
+
+                    echo "============================="
+                    echo "Get the branch name via the helper function getCurrentBranch:"
+                    def currentBranch = getCurrentBranch()
+                    echo "The current branch:" + currentBranch
+                }    
+            }
+        }
+    }
+}
+def getCurrentBranch () {
+    def fullRemoteBranchName =  sh (
+        script: 'git name-rev --name-only HEAD',
+        returnStdout: true
+    ).trim()
+    
+    echo "Full Branch Name: " + fullRemoteBranchName
+    
+    def currentBranch = fullRemoteBranchName.substring(fullRemoteBranchName.lastIndexOf('/') + 1, fullRemoteBranchName.length())
+    
+    return currentBranch
+}
+
+
