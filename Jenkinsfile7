@@ -29,7 +29,6 @@ pipeline {
             steps {
 
                 echo 'Building Artifact image'
-                echo "Branch Name: branchName"
 
                script {
                     buildJar()
