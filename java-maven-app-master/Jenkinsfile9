@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    tools {
+        maven "Maven3.6"}
+    stages {
+        stage('Increment App Version')
+            steps{
+                script{
+                    echo 'Incrementing App version'
+                    sh 'mvn build-helper:parse-version versions:set \
+                          -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.nextMinorVersion}.\\\${parsedVersion.incrementalVersion} \
+                          versions:commit'
+                    }
+                }
+        stage('Build App') {
+            steps {
+                script{
+                    echo 'Building the Application'
+                    sh "mvn package"
+                    }
+            }
+        }
+        stage('Testing Step') {
+            steps {
+                echo 'Testing Application '
+            }
+        }
+        stage('Building Docker Image') {
+            steps {
+                script{
+                    echo 'Building Docker Image '
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                            sh 'docker build -t zhajili/devops:jma-6.0 .'
+                            sh "echo $PASS | docker login -u $USER --password-stdin"
+                            sh 'docker push zhajili/devops:jma-6.0'
+                    }
+            }
+        }
+    }
+}
