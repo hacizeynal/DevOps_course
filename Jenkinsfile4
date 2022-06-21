@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.6'
+    }
+
+    stages {
+        stage('Build Jar') {
+            steps {
+                script{
+                    echo 'Building Jar..'
+                    sh 'mvn package'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                script{
+                    echo 'Building Docker Image..'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER' )])
+                       { sh 'docker build -t zhajili/devops:jma-2.0 .'
+                        sh "echo $PASS | docker login -u $USER --password-stdin"
+                        sh 'docker push zhajili/devops:jma-2.0'}
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+ 

@@ -1,0 +1,54 @@
+@Library("jenkins-shared-library")
+
+def gv
+pipeline {
+
+    agent any
+    
+    tools {
+    maven "maven-3.6"   
+    }
+
+    stages {
+
+        stage('Example') {
+
+            steps {
+
+                helloWorld(name:"Zeynal",dayOfWeek:"Monday")
+                script {
+                    calculator.add(6,8)
+                    calculator.multiple(6,8)
+                }
+
+            }
+
+        }
+        stage('Build Artifact') {
+
+            steps {
+
+                echo 'Building Artifact image'
+
+               script {
+                    buildJar()
+                }       
+            }
+        }
+        
+        stage('Build Docker Image') {
+
+            steps {
+
+                echo 'Building Docker image'
+
+                script {
+                    build2Image "zhajili/devops:jma-5.0"
+                }       
+            }
+        }
+
+    }
+
+
+}

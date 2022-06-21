@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    environment {
+        NEW_VERSION = "1.3.0"
+        //SERVER_CREDENTIALS =credentials('server-credentials')
+    }
+    parameters {
+        choice(name: 'VERSION',choices: ['1.1','1.2','1.3'],description: '')
+        booleanParam(name: 'executeTests',defaultValue: true,description: 'check true of false')
+    } 
+    stages {
+        stage('Welcome Step') {
+            steps { 
+                echo 'Welcome to JenkinsTest'
+            }
+        }
+        stage('Building Step') {
+            steps { 
+                echo 'Building App'
+                echo "Building version ${NEW_VERSION}"
+            }
+        }
+        stage('Testing Step') {
+            when{
+                expression{
+                    params.executeTests == true
+            }
+            }
+            steps { 
+                echo 'Testing App'
+            }
+        }
+        stage('Deploying Step') {
+            steps { 
+                echo 'Deploy the App'
+                echo "Deploying version ${params.VERSION}"
+            }
+        }
+    }
+}

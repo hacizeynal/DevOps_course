@@ -1,0 +1,48 @@
+def gv 
+
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.6'
+    }
+
+    stages {
+        stage('Init')
+        {
+            steps{
+                script{
+                    gv = load('script.groovy')
+            }
+
+            }
+        }
+        stage('Build Jar') {
+            steps {
+                script{
+                    gv.buildJar()
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                script{
+                    gv.buildImage()
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script{
+                    gv.deployApp()
+                }
+            }
+        }
+    }
+}
+ 
