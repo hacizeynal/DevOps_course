@@ -3,7 +3,7 @@ pipeline {
     tools {
         maven "maven-3.6"}
     stages {
-        stage('Increment App Version'){
+        stage('Increment App Version')
             steps{
                 script{
                     echo 'Incrementing App version'
@@ -14,28 +14,6 @@ pipeline {
                     def version = matcher[0][1]
                     env.IMAGE_NAME = "$version -$BUILD_NUMBER"
                     }
-                }
-        stage('Build App') {
-            steps {
-                script{
-                    echo 'Building the Application'
-                    sh "mvn clean package"
-                    }
-            }
-        }
 
-        stage('Building Docker Image') {
-            steps {
-                script{
-                    echo 'Building Docker Image '
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                            sh "docker build -t zhajili/devops:${IMAGE_NAME} ."
-                            sh "echo $PASS | docker login -u $USER --password-stdin"
-                            sh "docker push zhajili/devops:${IMAGE_NAME}"
-                    }
+                }
             }
-        }
-    }
-}
-}
-}
