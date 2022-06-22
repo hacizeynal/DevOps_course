@@ -3,15 +3,7 @@ pipeline {
     tools {
         maven "maven-3.6"}
     stages {
-        stage('Build App') {
-                steps {
-                    script{
-                        echo 'Building the Application'
-                        sh "cd java-maven-app-master-increment/"
-                        sh "mvn package"
-                        }
-                }
-            }
+
         stage('Increment Version') {
             steps {
                 script {
@@ -23,6 +15,15 @@ pipeline {
                     def version = matcher[0][1]
                     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
                             }
+            }
+        }
+        stage('Build App') {
+            steps {
+                script{
+                    echo 'Building the Application'
+                    sh "cd java-maven-app-master-increment/"
+                    sh "mvn package"
+                    }
             }
         }
         stage('Deploying Step') {
