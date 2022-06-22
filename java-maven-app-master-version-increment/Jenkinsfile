@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    tools {
+            maven "maven-3.6"}
+    stages {
+        stage('Welcome to Demo for Incrementing App') {
+            steps {
+                echo 'Welcome to Demo for Incrementing App'
+            }
+        }
+        stage('Increment App Version') {
+            steps {
+                script{
+                    echo 'Increment App Version'
+                    sh 'mvn build-helper:parse-version versions:set \
+                          -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.nextMinorVersion}.\\\${parsedVersion.incrementalVersion} \
+                          versions:commit'
+                    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+                    def version = matcher[0][1]
+                    env.IMAGE_NAME = "$version -$BUILD_NUMBER"
+                    }
+            }
+        }
+        stage('Deploying Step') {
+            steps {
+                echo 'Deploy the App'
+            }
+        }
+    }
+}
