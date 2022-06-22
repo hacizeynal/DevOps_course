@@ -8,12 +8,6 @@ pipeline {
                 echo 'Welcome to Demo for Incrementing App'
             }
         }
-        stage('Increment App Version'') {
-            steps {
-                echo 'Welcome to Demo for Incrementing App'
-                        }
-            }
-        }
         stage('Testing Step') {
             steps {
                 echo 'Testing App'
