@@ -3,7 +3,7 @@ pipeline {
     tools {
         maven "maven-3.6"}
     stages {
-        stage('Increment App Version')
+        stage('Increment App Version'){
             steps{
                 script{
                     echo 'Incrementing App version'
@@ -14,7 +14,7 @@ pipeline {
                     def version = matcher[0][1]
                     env.IMAGE_NAME = "$version -$BUILD_NUMBER"
                     }
-
+                    }
                 }
         stage('Build App') {
             steps {
