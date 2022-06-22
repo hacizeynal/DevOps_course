@@ -10,10 +10,8 @@ pipeline {
         }
         stage('Increment App Version'') {
             steps {
-                script{
-                    echo 'Increment App Version'
-                }
-
+                echo 'Welcome to Demo for Incrementing App'
+                        }
             }
         }
         stage('Testing Step') {
