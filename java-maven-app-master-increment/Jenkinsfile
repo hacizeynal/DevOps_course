@@ -7,7 +7,7 @@ pipeline {
                 steps {
                     script{
                         echo 'Building the Application'
-                        sh "cd java-maven-app-master-increment"
+                        sh "cd java-maven-app-master-increment/"
                         sh "mvn package"
                         }
                 }
