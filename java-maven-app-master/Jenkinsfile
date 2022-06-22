@@ -8,9 +8,13 @@ pipeline {
                 echo 'Welcome to Demo for Incrementing App'
             }
         }
-        stage('Testing Step') {
+        stage('Increment App Version') {
             steps {
-                echo 'Testing App'
+                script{
+                        echo 'Increment App Version'
+                        sh 'mvn package'
+                    }
+                echo 'Increment App Version'
             }
         }
         stage('Deploying Step') {
