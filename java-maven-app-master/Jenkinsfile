@@ -3,14 +3,17 @@ pipeline {
     tools {
             maven "maven-3.6"}
     stages {
-        stage('Welcome Step') {
+        stage('Welcome to Demo for Incrementing App') {
             steps {
-                echo 'Welcome to JenkinsTest'
+                echo 'Welcome to Demo for Incrementing App'
             }
         }
-        stage('Building Step') {
+        stage('Increment App Version'') {
             steps {
-                echo 'Building App'
+                script{
+                    echo 'Increment App Version'
+                }
+
             }
         }
         stage('Testing Step') {
