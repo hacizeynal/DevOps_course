@@ -49,7 +49,7 @@ pipeline {
                                sh "git remote set-url origin 'https://${USER}:${PASS}@github.com/zhajili91/DevOps_course.git'"
                                sh "git branch"
 //                                sh "git stash"
-//                                sh "git checkout increment-app-maven"
+                               sh "git checkout increment-app-maven"
                                sh 'git add .'
                                sh 'git commit -m "ci: version bump"'
 //                                sh 'git push'
