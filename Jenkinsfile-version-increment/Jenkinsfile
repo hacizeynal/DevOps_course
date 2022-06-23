@@ -43,8 +43,8 @@ pipeline {
                        script {
                            withCredentials([usernamePassword(credentialsId: 'git-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                                // git config here for the first time run
-                               sh 'git config user.email "hacizeynal@hotmail.com"'
-                               sh 'git config user.name "hacizeynal"'
+                               sh 'git config --global user.email "hacizeynal@hotmail.com"'
+                               sh 'git config --global user.name "hacizeynal"'
 
                                sh "git remote set-url origin 'https://${USER}:${PASS}@github.com/zhajili91/DevOps_course.git'"
                                sh "git branch"
