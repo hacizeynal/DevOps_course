@@ -47,6 +47,7 @@ pipeline {
                                sh 'git config user.name "hacizeynal"'
 
                                sh "git remote set-url origin https://${USER}:${PASS}@github.com/zhajili91/DevOps_course.git"
+                               sh "git checkout increment-app-maven"
                                sh 'git add .'
                                sh 'git commit -m "commit updates via Jenkins"'
                                sh 'git push origin HEAD:increment-app-maven'
