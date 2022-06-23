@@ -52,7 +52,8 @@ pipeline {
 //                                sh "git checkout increment-app-maven"
                                sh 'git add .'
                                sh 'git commit -m "ci: version bump"'
-                               sh 'git push origin HEAD:increment-app-maven'
+                               sh 'git push'
+//                                sh 'git push origin HEAD:increment-app-maven'
                            }
                        }
                    }
