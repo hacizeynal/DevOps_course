@@ -4,7 +4,7 @@ pipeline {
         maven 'maven-3.6'
     }
     stages {
-        stage('Building Step') {
+        stage('Incrementing App Version') {
             steps {
                 script {
                     echo 'incrementing app version...'
@@ -25,9 +25,17 @@ pipeline {
                 }
             }
         }
-        stage('Deploying Step') {
+        stage('building docker image') {
             steps {
-                echo 'Deploy the App'
+                script {
+                    echo 'Building Docker Image..'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER' )])
+                        {
+                                sh "docker build -t zhajili/devops:$IMAGE_NAME ."
+                                sh "echo $PASS | docker login -u $USER --password-stdin"
+                                sh "docker push zhajili/devops:$IMAGE_NAME"
+                        }
+                }
             }
         }
     }
