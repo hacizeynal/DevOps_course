@@ -37,7 +37,7 @@ pipeline {
                         }
                 }
             }
-       stage("Commit version to GitHub")
+       stage("Commit version to GitHub"){
             steps{
                 script{
                     echo "Commit updates to GitHub"
