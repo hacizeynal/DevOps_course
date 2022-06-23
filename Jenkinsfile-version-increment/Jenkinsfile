@@ -41,7 +41,7 @@ pipeline {
        stage('commit version update') {
                    steps {
                        script {
-                           withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                           withCredentials([usernamePassword(credentialsId: 'git-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                                // git config here for the first time run
                                sh 'git config user.email "hacizeynal@hotmail.com"'
                                sh 'git config user.name "hacizeynal"'
