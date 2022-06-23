@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8553de-d350-4a75-af0d-cefa5e4dd613" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/factorial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/developing-with-docker-master/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/developing-with-docker-master/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker_file_example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docker_file_example.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockercommands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dockercommands.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fibonaci.py" beforeDir="false" afterPath="$PROJECT_DIR$/fibonaci.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react_nodejs_example/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile-version-increment/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile-version-increment/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,19 +26,26 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="294JbocYfKgP2LVnITjy6YwZ2By" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/zhajili/Desktop/DevOps/DevOps Practise/pom.xml&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/zhajili/Desktop/DevOps/DevOps Practise"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Flask_app" />
