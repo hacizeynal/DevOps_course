@@ -50,7 +50,7 @@ pipeline {
                                sh "git stash"
                                sh "git checkout increment-app-maven"
                                sh 'git add .'
-                               sh 'git commit -m "commit updates via Jenkins"'
+                               sh 'git commit -m "ci: version bump"'
                                sh 'git push origin HEAD:increment-app-maven'
                            }
                        }
