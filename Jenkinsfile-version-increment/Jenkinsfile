@@ -46,7 +46,7 @@ pipeline {
                                sh 'git config user.email "hacizeynal@hotmail.com"'
                                sh 'git config user.name "hacizeynal"'
 
-                               sh 'git remote set-url origin "https://${USER}:${PASS}@github.com/zhajili91/DevOps_course.git"'
+                               sh "git remote set-url origin 'https://${USER}:${PASS}@github.com/zhajili91/DevOps_course.git'"
 //                                sh "git stash"
 //                                sh "git checkout increment-app-maven"
                                sh 'git add .'
