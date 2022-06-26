@@ -20,7 +20,7 @@ pipeline {
             steps {
                script {
                   echo 'building application jar...'
-                  buildJar()
+                  buildJarNana()
                }
             }
         }
@@ -28,9 +28,9 @@ pipeline {
             steps {
                 script {
                    echo 'building docker image...'
-                   buildImage(env.IMAGE_NAME)
-                   dockerLogin()
-                   dockerPush(env.IMAGE_NAME)
+                   buildImageNana(env.IMAGE_NAME)
+                   dockerLoginNana()
+                   dockerPushNana(env.IMAGE_NAME)
                 }
             }
         }
