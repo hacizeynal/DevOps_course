@@ -29,8 +29,8 @@ pipeline {
                 script {
                    echo 'building docker image...'
                    buildImageNana(env.IMAGE_NAME)
-//                   dockerLoginNana()
-//                   dockerPushNana(env.IMAGE_NAME)
+                   dockerLoginNana()
+                   dockerPushNana(env.IMAGE_NAME)
                      }
                  }
             }
