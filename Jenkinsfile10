@@ -31,19 +31,9 @@ pipeline {
                    buildImageNana(env.IMAGE_NAME)
                    dockerLoginNana()
                    dockerPushNana(env.IMAGE_NAME)
-                }
-            }
-        }
-        stage('deploy') {
-            steps {
-                script {
-                    def dockerCommands = "docker run -p 8080:8080 -d zhajili/my_aws_app:1.1"
-                    echo 'Deploy the Application in AWS EC2'
-                    sshagent(['ec2-aws']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${dockerCommands}"
-                        }
-                   }
-                }
+                     }
+                 }
             }
         }
     }
+}
