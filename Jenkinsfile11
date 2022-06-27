@@ -13,7 +13,7 @@ pipeline {
         maven 'maven-3.6'
     }
     environment {
-        IMAGE_NAME = 'nanajanashia/demo-app:java-maven-2.0'
+        IMAGE_NAME = 'zhajili/my_aws_app:java-maven-1.0'
     }
     stages {
         stage('build app') {
