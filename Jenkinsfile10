@@ -13,36 +13,36 @@ pipeline {
         maven 'maven-3.6'
     }
     environment {
-        IMAGE_NAME = 'zhajili/my_aws_app:1.3'
+        IMAGE_NAME = 'zhajili/my_aws_app:1.5'
     }
     stages {
         stage('build app') {
             steps {
-               script {
-                  echo 'building application jar...'
-                  buildJarNana()
-               }
+                script {
+                    echo 'building application jar...'
+                    buildJarNana()
+                }
             }
         }
         stage('build image') {
             steps {
                 script {
-                   echo 'building docker image...'
-                   buildImageNana(env.IMAGE_NAME)
-                   dockerLoginNana()
-                   dockerPushNana(env.IMAGE_NAME)
-                     }
-                 }
+                    echo 'building docker image...'
+                    buildImageNana(env.IMAGE_NAME)
+                    dockerLoginNana()
+                    dockerPushNana(env.IMAGE_NAME)
+                }
             }
+        }
         stage('deploying to EC2') {
             steps {
                 script {
                     def dockerCommands = "docker run -p 3001:80 -d zhajili/my_aws_app:1.5"
                     echo 'Deploy the Application in AWS EC2'
                     sshagent(['ec2-aws']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${dockerCommands}"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${dockerCommands}"
+                    }
                 }
             }
-        }
         }
     }
