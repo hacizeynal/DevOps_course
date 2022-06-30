@@ -1,0 +1,51 @@
+#!/usr/bin/env groovy
+// this Jenkinsfile is used for to manage containers with Docker-compose
+
+library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
+    [$class: 'GitSCMSource',
+     remote: 'https://github.com/hacizeynal/DevOps-Jenkins-Shared-Library.git',
+     credentialsId: 'jenkins-zhajili'
+    ]
+)
+
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.6'
+    }
+    environment {
+        IMAGE_NAME = 'zhajili/my_aws_app:1.7'
+    }
+    stages {
+        stage('build app') {
+            steps {
+                script {
+                    echo 'building application jar...'
+                    buildJarNana()
+                }
+            }
+        }
+        stage('build image') {
+            steps {
+                script {
+                    echo 'building docker image...'
+                    buildImageNana(env.IMAGE_NAME)
+                    dockerLoginNana()
+                    dockerPushNana(env.IMAGE_NAME)
+                }
+            }
+        }
+        stage('deploying to EC2') {
+            steps {
+                script {
+                    echo 'Deploy the Application in AWS EC2'
+                    def dockercomposecommand = "docker-compose -f docker-compose.yml up --detach"
+                    sshagent(['ec2-aws']) {
+                        sh "scp docker-compose.yml ec2-user@3.73.122.101:/home/ec2-user"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${dockercomposecommand}"
+                    }
+                }
+            }
+        }
+    }
+}
