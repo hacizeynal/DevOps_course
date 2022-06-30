@@ -1,7 +1,8 @@
 version: "3.8"
 services:
     java-maven-app:
-      image: zhajili/my_aws_app:1.7
+#      image: zhajili/my_aws_app:1.7
+      image: ${IMAGE}
       ports:
         - 3001:8080
     postgres:

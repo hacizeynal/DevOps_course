@@ -14,7 +14,7 @@ pipeline {
         maven 'maven-3.6'
     }
     environment {
-        IMAGE_NAME = 'zhajili/my_aws_app:1.7'
+        IMAGE_NAME = 'zhajili/my_aws_app:1.8'
     }
     stages {
         stage('build app') {
@@ -40,12 +40,13 @@ pipeline {
                 script {
                     echo 'Deploy the Application in AWS EC2'
 //                    def dockercomposecommand = "docker-compose -f docker-compose.yml up --detach"
-                    def shellCMD = "bash ./server-commands.sh"
+                    def shellCMD = "bash ./server-commands.sh $IMAGE_NAME"
+                    def EC2Instance = "ec2-user@3.73.122.101"
                     sshagent(['ec2-aws']) {
-                        sh "scp server-commands.sh ec2-user@3.73.122.101:/home/ec2-user"
-                        sh "scp docker-compose.yml ec2-user@3.73.122.101:/home/ec2-user"
-//                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${dockercomposecommand}"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.73.122.101 ${shellCMD}"
+                        sh "scp server-commands.sh ${EC2Instance}:/home/ec2-user"
+                        sh "scp docker-compose.yml ${EC2Instance}:/home/ec2-user"
+//                        sh "ssh -o StrictHostKeyChecking=no ${EC2Instance} ${dockercomposecommand}"
+                        sh "ssh -o StrictHostKeyChecking=no ${EC2Instance} ${shellCMD}"
                     }
                 }
             }
