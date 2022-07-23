@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Welcome Step') {
+        stage('Welcome Step ') {
             steps { 
-                echo 'Welcome to JenkinsTest'
+                echo 'In this demo we will deploy application to EKS !'
             }
         }
         stage('Building Step') {
