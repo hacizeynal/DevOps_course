@@ -19,6 +19,7 @@ pipeline {
         stage('Deploying Step') {
             steps { 
                 echo 'Deploy the App'
+                sh "kubectl create deployment first_eks_deployment --image=nginx"
             }
         }
     }
