@@ -24,6 +24,21 @@ pipeline {
                 }
             }
         }
+
+        stage('build docker image') {
+            steps {
+                script {
+                    echo 'Building Docker Image..!'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER' )])
+                        {
+                                sh "docker build -t zhajili/devops:${IMAGE_NAME} ."
+                                sh "echo $PASS | docker login -u $USER --password-stdin"
+                                sh "docker push zhajili/devops:${IMAGE_NAME}"
+                        }
+                }
+                }
+            }
+        }
         stage('Deploying Step') {
             steps {
                 echo 'Deploy the App'
