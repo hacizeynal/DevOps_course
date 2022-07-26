@@ -44,5 +44,4 @@ pipeline {
                 echo 'Deploy the App'
             }
         }
-    }
 }
