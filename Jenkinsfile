@@ -38,11 +38,10 @@ pipeline {
                 }
                 }
             }
-        }
         stage('Deploying Step') {
             steps {
                 echo 'Deploy the App'
             }
         }
+    }
 }
-}}
