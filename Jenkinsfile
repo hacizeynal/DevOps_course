@@ -35,12 +35,19 @@ pipeline {
                                 sh "echo $PASS | docker login -u $USER --password-stdin"
                                 sh "docker push zhajili/devops:${IMAGE_NAME}"
                         }
-                }
+                    }
                 }
             }
         stage('Deploying Step') {
+            environment {
+               AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
+               AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+               APP_NAME = "java-maven-app"
+            }
             steps {
-                echo 'Deploy the App'
+                echo 'Deploy the docker image to EKS'
+                sh 'envsubst < deployment.yaml kubectl | apply -f -'
+                sh 'envsubst < service.yaml kubectl | apply -f -'
             }
         }
     }
