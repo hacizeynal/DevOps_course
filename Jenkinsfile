@@ -56,19 +56,5 @@ pipeline {
                 }
             }
         }
-        stage('commit version update') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'hacizeynal@hotmail.com', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'git config user.email "hacizeynal@hotmail.com"'
-                        sh 'git config user.name "hacizeynal"'
-                        sh "git remote set-url origin https://${USER}:${PASS}@https://github.com/hacizeynal/DevOps_course.git"
-                        sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:deploy-to-k8'
-                    }
-                }
-            }
-        }
     }
 }
