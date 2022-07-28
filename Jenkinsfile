@@ -44,7 +44,9 @@ pipeline {
                AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
                APP_NAME = "java-maven-app"
             }
-            steps {
+            steps
+                script
+                    {
                 echo 'Deploy the docker image to EKS'
                 sh 'envsubst < deployment.yaml kubectl | apply -f -'
                 sh 'envsubst < service.yaml kubectl | apply -f -'
