@@ -59,7 +59,7 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    withCredentials([usernamePassword(credentialsId: 'hacizeynal@hotmail.com', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh 'git config user.email "hacizeynal@hotmail.com"'
                         sh 'git config user.name "hacizeynal"'
                         sh "git remote set-url origin https://${USER}:${PASS}@https://github.com/hacizeynal/DevOps_course.git"
