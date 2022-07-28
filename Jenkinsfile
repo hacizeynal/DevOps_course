@@ -1,7 +1,14 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
     tools {
-        maven "maven-3.8.6"}
+        maven 'Maven'
+    }
+//    environment {
+//        DOCKER_REPO_SERVER = '664574038682.dkr.ecr.eu-west-3.amazonaws.com'
+//        DOCKER_REPO = "${DOCKER_REPO_SERVER}/java-maven-app"
+//    }
     stages {
         stage('increment version') {
             steps {
@@ -24,32 +31,44 @@ pipeline {
                 }
             }
         }
-
-        stage('build docker image') {
+        stage('build image') {
             steps {
                 script {
-                    echo 'Building Docker Image..!'
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER' )])
-                        {
-                                sh "docker build -t zhajili/devops:${IMAGE_NAME} ."
-                                sh "echo $PASS | docker login -u $USER --password-stdin"
-                                sh "docker push zhajili/devops:${IMAGE_NAME}"
-                        }
+                    echo "building the docker image..."
+                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "docker build -t zhajili/devops:${IMAGE_NAME} ."
+                        sh "echo $PASS | docker login -u $USER --password-stdin"
+                        sh "docker push zhajili/devops:${IMAGE_NAME}"
                     }
                 }
             }
-        stage('Deploying Step') {
+        }
+        stage('deploy') {
             environment {
-               AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
-               AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
-               APP_NAME = "java-maven-app"
+                AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
+                AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+                APP_NAME = 'java-maven-app'
             }
-            steps
-                script
-                    {
-                echo 'Deploy the docker image to EKS'
-                sh 'envsubst < deployment.yaml kubectl | apply -f -'
-                sh 'envsubst < service.yaml kubectl | apply -f -'
+            steps {
+                script {
+                    echo 'deploying docker image...'
+                    sh 'envsubst < deployment.yaml | kubectl apply -f -'
+                    sh 'envsubst < service.yaml | kubectl apply -f -'
+                }
+            }
+        }
+        stage('commit version update') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh 'git config user.email "hacizeynal@hotmail.com"'
+                        sh 'git config user.name "hacizeynal"'
+                        sh "git remote set-url origin https://${USER}:${PASS}@https://github.com/hacizeynal/DevOps_course.git"
+                        sh 'git add .'
+                        sh 'git commit -m "ci: version bump"'
+                        sh 'git push origin HEAD:deploy-to-k8'
+                    }
+                }
             }
         }
     }
