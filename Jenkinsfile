@@ -12,25 +12,23 @@ pipeline {
                 } 
             }
         }
-        stage('Execute Ansible Playbook') {
-            steps { 
+        // stage('Execute Ansible Playbook') {
+        //     steps { 
                 
-                script{
-                    echo 'Configuring EC2 instances via Ansible'
-                    def remote = [:]
-                    remote.name = "ansible-server"
-                    remote.host = "188.166.163.179"
-                    remote.allowAnyHosts = true
-                    withCredentials([sshUserPrivateKey(credentialsId: "ansible-key-server",keyFileVariable: "keyfile",usernameVariable: 'user')])
-                    {   
-                    remote.user = user
-                    remote.identifyFile = keyfile
-                    sshCommand remote: remote, command: 'ls -la' 
-                    }
-                     
-
-                }
-            }
-        }
+        //         script{
+        //             echo 'Configuring EC2 instances via Ansible'
+        //             def remote = [:]
+        //             remote.name = "ansible-server"
+        //             remote.host = "188.166.163.179"
+        //             remote.allowAnyHosts = true
+        //             withCredentials([sshUserPrivateKey(credentialsId: "ansible-key-server",keyFileVariable: 'keyfile',usernameVariable: 'user')])
+        //             {   
+        //             remote.user = user
+        //             remote.identifyFile = keyfile
+        //             sshCommand remote: remote, command: 'ls -la' 
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
