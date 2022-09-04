@@ -24,22 +24,12 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: "ansible-key-server",keyFileVariable: "keyfile",usernameVariable: 'user')])
                     {   
                     remote.user = user
-                    remote.identityFile = keyfile
+                    remote.identifyFile = keyfile
                     sshCommand remote: remote, command: 'ls -la' 
                     }
                      
 
                 }
-            }
-        }
-        stage('Testing Step') {
-            steps { 
-                echo 'Testing App'
-            }
-        }
-        stage('Deploying Step') {
-            steps { 
-                echo 'Deploy the App'
             }
         }
     }
