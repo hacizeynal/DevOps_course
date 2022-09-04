@@ -5,7 +5,7 @@ pipeline {
             steps { 
                 echo 'Copy all necessary files to Ansible Conrol Node'
                 sshagent(["ansible-key-server"]){
-                    sh 'scp -o StrictHosKeyChecking=no ansible/* root@188.166.163.179:/root'
+                    sh 'scp -o StrictHostKeyChecking=no ansible/* root@188.166.163.179:/root'
                 }
             }
         }
