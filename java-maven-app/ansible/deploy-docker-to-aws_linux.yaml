@@ -1,0 +1,95 @@
+---
+# Do not assume the inventory_hostname is resolvable and delay 10 seconds at start
+- name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
+  hosts: instance_type_t2_small
+  gather_facts: False
+  tasks:
+    - name: Check ssh Port Open 
+      wait_for:
+        port: 22
+        delay: 10
+        timeout: 100
+        search_regex: OpenSSH
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+      vars:
+        connection: local
+        ansible_python_interpreter: /usr/bin/python
+         
+- name: Install Python3 and Docker
+  hosts: instance_type_t2_small
+  become: yes
+  gather_facts: False
+  become_user: root
+  tasks:
+    - name: Install Python3 and Docker
+      vars:
+        ansible_python_interpreter: /usr/bin/python
+      yum:
+        name:
+          - python3
+          - docker
+        update_cache: yes
+        state: present
+
+- name: Install Docker-Compose
+  hosts: instance_type_t2_small
+  become: yes
+  become_user: root
+  tasks:
+    - name:
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{lookup('pipe', 'uname -m')}}
+        dest: /usr/local/bin/docker-compose
+        mode: +x
+    - name: Install Docker python module
+      pip: 
+        name: 
+          - docker
+          - docker-compose
+- name: Ensure docker deamon is running
+  hosts: instance_type_t2_small
+  become: yes
+  become_user: root
+  tasks:
+    - name: Start Docker deamon
+      systemd:
+        name: docker
+        state: started
+- name: Add ec2-user to Docker Group 
+  hosts: instance_type_t2_small
+  become: yes
+  become_user: root
+  tasks: 
+    - name: Add ec2-user to docker Group
+      user: 
+        name: ec2-user
+        groups: docker
+        append: yes
+    - name : Reconnect to the ec2-server
+      meta: reset_connection
+- name: Start docker Containers
+  hosts: instance_type_t2_small
+  vars_files:
+    - project-vars
+  tasks:
+    - name: Copy docker compose to EC2
+      copy: 
+        src: /Users/zhajili/Desktop/DevOps/Ansible/docker-compose_mysql.yaml
+        dest: /home/ec2-user/docker-compose.yml
+    - name: Login to DockerHub
+      docker_login:
+        registry_url: https://index.docker.io/v1/
+        username: zhajili
+        password: "{{docker_password}}"
+    - name: Execute Docker compose
+      docker_compose:
+        project_src: /home/ec2-user/
+        state: present # docker-compose up
+
+  
+
+  
+
+      
+      
+    

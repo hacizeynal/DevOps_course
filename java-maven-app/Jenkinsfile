@@ -1,9 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Welcome Step') {
+        stage('Copy files to Ansible Conrol Node') {
             steps { 
-                echo 'Welcome to JenkinsTest'
+                echo 'Copy all necessary files to Ansible Conrol Node'
+                sshagent(["ansible-key-server"]){
+                    sh 'scp -o StrictHosKeyChecking=no ansible/* root@188.166.163.179:/root'
+                }
             }
         }
         stage('Building Step') {
